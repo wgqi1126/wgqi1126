@@ -74,14 +74,7 @@ hexo new <blog-name>
 hexo generate
 ```
 
-# 创建 Github Page 项目
+# 部署博客
 
 官方文档：
 https://hexo.io/zh-cn/docs/github-pages
-
-项目名为：<你的 GitHub 用户名>.github.io
-
-
-
-# 配置发布
-
