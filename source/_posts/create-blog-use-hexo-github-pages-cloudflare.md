@@ -77,4 +77,28 @@ hexo generate
 # 部署博客
 
 官方文档：
-https://hexo.io/zh-cn/docs/github-pages
+https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository
+
+```shell
+ npm install hexo-deployer-git --save
+ ```
+
+ 在 _config.yml（如果有已存在的请删除）添加如下配置：
+
+```yaml
+deploy:
+  type: git
+  repo: https://github.com/<username>/<project>
+  # example, https://github.com/hexojs/hexojs.github.io
+  branch: gh-pages
+```
+
+## 部署
+
+```shell
+hexo clean && hexo deploy
+```
+
+# 自定义域名
+
+https://docs.github.com/cn/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain
