@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>使用 Hexo 创建博客并使用 GitHub Pages 和 Cloudflare 实现自定义域名以及 HTTPS | 洸啟·魍</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="什么是 HexoHexo 是一个使用 Markdown 编写文章并生成静态网页的博客系统。 安装 Hexo以下都是基于 WSL1 Ubuntu 的操作。 官方安装文档：https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn&#x2F;docs&#x2F; 安装依赖 Node.js 10.13+ Git  12345678# 安装 nodejs# https:&#x2F;&#x2F;github.com&#x2F;nodesource&#x2F;distribution">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Hexo 创建博客并使用 GitHub Pages 和 Cloudflare 实现自定义域名以及 HTTPS">
+<meta property="og:url" content="https://guangqi.wang/2022/04/18/create-blog-use-hexo-github-pages-cloudflare/index.html">
+<meta property="og:site_name" content="洸啟·魍">
+<meta property="og:description" content="什么是 HexoHexo 是一个使用 Markdown 编写文章并生成静态网页的博客系统。 安装 Hexo以下都是基于 WSL1 Ubuntu 的操作。 官方安装文档：https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn&#x2F;docs&#x2F; 安装依赖 Node.js 10.13+ Git  12345678# 安装 nodejs# https:&#x2F;&#x2F;github.com&#x2F;nodesource&#x2F;distribution">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-18T14:22:22.000Z">
+<meta property="article:modified_time" content="2022-04-18T15:13:38.576Z">
+<meta property="article:author" content="Echo Wang">
+<meta property="article:tag" content="Hexo, GitHub Pages, Cloudflare, HTTPS, Blog">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="洸啟·魍" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">洸啟·魍</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">魑魅魍魉</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://guangqi.wang"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-create-blog-use-hexo-github-pages-cloudflare" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/18/create-blog-use-hexo-github-pages-cloudflare/" class="article-date">
+  <time class="dt-published" datetime="2022-04-18T14:22:22.000Z" itemprop="datePublished">2022-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      使用 Hexo 创建博客并使用 GitHub Pages 和 Cloudflare 实现自定义域名以及 HTTPS
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是-Hexo"><a href="#什么是-Hexo" class="headerlink" title="什么是 Hexo"></a>什么是 Hexo</h1><p>Hexo 是一个使用 Markdown 编写文章并生成静态网页的博客系统。</p>
+<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><p>以下都是基于 WSL1 Ubuntu 的操作。</p>
+<p>官方安装文档：<br><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><ul>
+<li>Node.js 10.13+</li>
+<li>Git</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 nodejs</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">https://github.com/nodesource/distributions/blob/master/README.md<span class="comment">#debinstall</span></span></span><br><span class="line">curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install -y nodejs</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 git</span></span><br><span class="line">sudo apt install -y git</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-Hexo-1"><a href="#安装-Hexo-1" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建博客"><a href="#创建博客" class="headerlink" title="创建博客"></a>创建博客</h1><p>官方文档：<br><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/setup">https://hexo.io/zh-cn/docs/setup</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建博客</span></span><br><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm install</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动博客内置的服务器</span></span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>通过浏览器访问 <code>http://localhost:4000/</code> 博客</p>
+<h1 id="配置博客"><a href="#配置博客" class="headerlink" title="配置博客"></a>配置博客</h1><p>官方文档：<br><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">https://hexo.io/zh-cn/docs/configuration</a></p>
+<h1 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h1><p>官方文档：<br><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/writing">https://hexo.io/zh-cn/docs/writing</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &lt;blog-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="生成静态页"><a href="#生成静态页" class="headerlink" title="生成静态页"></a>生成静态页</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+<h1 id="部署博客"><a href="#部署博客" class="headerlink" title="部署博客"></a>部署博客</h1><p>官方文档：<br><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository">https://hexo.io/zh-cn/docs/github-pages#%E7%A7%81%E6%9C%89-Repository</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p> 在 _config.yml（如果有已存在的请删除）添加如下配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/&lt;username&gt;/&lt;project&gt;</span></span><br><span class="line">  <span class="comment"># example, https://github.com/hexojs/hexojs.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://guangqi.wang/2022/04/18/create-blog-use-hexo-github-pages-cloudflare/" data-id="cl24uxo1m0000koioh8od89fg" data-title="使用 Hexo 创建博客并使用 GitHub Pages 和 Cloudflare 实现自定义域名以及 HTTPS" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo-GitHub-Pages-Cloudflare-HTTPS-Blog/" rel="tag">Hexo, GitHub Pages, Cloudflare, HTTPS, Blog</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo-GitHub-Pages-Cloudflare-HTTPS-Blog/" rel="tag">Hexo, GitHub Pages, Cloudflare, HTTPS, Blog</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Hexo-GitHub-Pages-Cloudflare-HTTPS-Blog/" style="font-size: 10px;">Hexo, GitHub Pages, Cloudflare, HTTPS, Blog</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/04/18/create-blog-use-hexo-github-pages-cloudflare/">使用 Hexo 创建博客并使用 GitHub Pages 和 Cloudflare 实现自定义域名以及 HTTPS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Echo Wang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
